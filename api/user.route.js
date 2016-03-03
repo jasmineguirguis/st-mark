@@ -4,6 +4,8 @@ var bcrypt = require('bcrypt');
 var Promise = require('bluebird');
 var User = require('../mongoose/models/user.model');
 var passport = require('passport');
+var config = require('../config');
+var jwt = require('jsonwebtoken');
 
 function hashPassword(password){
   return new Promise((resolve, reject) => {
@@ -43,7 +45,8 @@ router.post('/register', function(req, res, next) {
 router.post('/login',
   passport.authenticate('local'),
   function(req, res) {
-    console.log(req.user);
+    var token = jwt.sign({ token: req.user._id }, config.token.secret, {expiresIn: '7d'});
+    res.status(200).send({token: token});
   });
 
 module.exports = router;

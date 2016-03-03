@@ -5,16 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var jwt = require('jsonwebtoken');
 
 require('./mongoose/mongoose.config'); // database connection
 
-var routes = require('./routes/index.route');
-var users = require('./routes/user.route');
+var routes = require('./api/index.route');
+var users = require('./api/user.route');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'web', 'public'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
@@ -23,7 +24,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'web')));
+app.use(express.static(path.join(__dirname, 'web', 'public')));
 
 require('./passport/passport.config'); // config passport
 app.use(passport.initialize());
@@ -35,6 +36,12 @@ app.use(require('connect-livereload')({
 
 app.use('/', routes);
 app.use('/user', users);
+
+app.use(function(){
+  jwt.verify(token, config.token.secret, function(err, decoded) {
+    console.log(decoded);
+  });
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
