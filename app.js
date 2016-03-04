@@ -6,11 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
+var config = require('./config');
 
 require('./mongoose/mongoose.config'); // database connection
 
 var routes = require('./api/index.route');
 var users = require('./api/user.route');
+var feeds = require('./api/feeds.route');
 
 var app = express();
 
@@ -30,18 +32,19 @@ require('./passport/passport.config'); // config passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(require('connect-livereload')({
-    port: process.env.PORT || '3000'
-  })); // reload the page with gulp
-
 app.use('/', routes);
 app.use('/user', users);
 
-app.use(function(){
+app.use(function(req, res, next){
+  var token = req.headers.token;
   jwt.verify(token, config.token.secret, function(err, decoded) {
-    console.log(decoded);
+    var userId = decoded.token;
+    req['userId'] = userId;
+    next();
   });
-})
+}); // authenticate
+
+app.use('/feeds', feeds);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

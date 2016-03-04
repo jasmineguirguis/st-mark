@@ -15,7 +15,7 @@ var app = angular.module('StMark', ['ngRoute', 'ui-notification'])
 .config(function($httpProvider, $routeProvider, $locationProvider, NotificationProvider) {
   $httpProvider.interceptors.push('requestInterceptor')
 
-  NotificationProviderrequestInterceptor.setOptions({
+  NotificationProvider.setOptions({
     delay: 10000,
     startTop: 20,
     startRight: 10,
