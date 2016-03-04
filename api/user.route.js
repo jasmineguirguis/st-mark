@@ -49,4 +49,9 @@ router.post('/login',
     res.status(200).send({token: token});
   });
 
+router.get('/logout', function(req, res){
+  req.logout();
+  res.send({ message: 'logout' });
+});
+
 module.exports = router;

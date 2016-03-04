@@ -7,13 +7,12 @@ var app = angular.module('StMark', ['ngRoute', 'ui-notification'])
       $rootScope.isAuth = true;
     } else {
       $rootScope.isAuth = false;
-      $location.url('/login');
     }
   })
 })
 
 .config(function($httpProvider, $routeProvider, $locationProvider, NotificationProvider) {
-  $httpProvider.interceptors.push('requestInterceptor')
+  $httpProvider.interceptors.push('authInterceptor')
 
   NotificationProvider.setOptions({
     delay: 10000,
