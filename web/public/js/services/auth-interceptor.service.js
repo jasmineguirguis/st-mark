@@ -4,7 +4,6 @@ app.factory('authInterceptor', ['$q', '$location', function($q, $location) {
     'request': function(config) {
       var token = localStorage.getItem('token');
       config.headers['token'] = token;
-      console.log(config);
       return config;
     },
 

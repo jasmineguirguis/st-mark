@@ -38,14 +38,18 @@ app.use('/user', users);
 app.use(function(req, res, next){
 
   var token;
-  req.headers.token ? token = req.headers.token : res.status(401).send({ message: 'Athentication is required' });
+  if (req.headers.token !== 'null'){
+    token = req.headers.token;
+    jwt.verify(token, config.token.secret, function(err, decoded) {
+      if (err) res.status(401).send({ message: 'Token is invalid' });
+      var userId = decoded.token;
+      req['userId'] = userId;
+      next();
+    });
+  } else {
+    res.status(401).send({ message: 'Athentication is required' });
+  }
 
-  jwt.verify(token, config.token.secret, function(err, decoded) {
-    if (err) res.status(401).send({ message: 'Token is invalid' });
-    var userId = decoded.token;
-    req['userId'] = userId;
-    next();
-  });
 }); // authenticate
 
 app.use('/feeds', feeds);
