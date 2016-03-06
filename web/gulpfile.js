@@ -18,7 +18,7 @@ gulp.task('postcss', function () {
         ]))
         .on('error', gutil.log)
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('web/css/'))
+        .pipe(gulp.dest('public/css/'))
 });
 
 gulp.task('default', ['postcss','watch']);

@@ -1,3 +1,9 @@
 body {
+  background-color: #f5f8fa;
   font-size: 16px;
+}
+
+.btn-icon span{
+  padding-right: 2px;
+  border-right: solid thin #eee;
 }
