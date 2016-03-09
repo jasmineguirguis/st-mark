@@ -25,11 +25,13 @@
     <nav class="navbar navbar-default" ng-controller="NavbarController">
       <div class="container">
         <div class="navbar-header">
-          <button hamburger-button class="hamburger hamburger--collapse navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" type="button">
-            <span class="hamburger-box">
-              <span class="hamburger-inner"></span>
-            </span>
-          </button>
+          <div class="visible-xs">
+            <button hamburger-button class="hamburger hamburger--collapse navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" type="button">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+            </button>
+          </div>
           <a class="navbar-brand" href="#">
             <img alt="St.Mark" ng-src="{{  }}">
           </a>
