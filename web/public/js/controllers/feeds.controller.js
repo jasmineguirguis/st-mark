@@ -7,4 +7,6 @@ app.controller('FeedsController', ['$scope', 'feedsRequest', function($scope, fe
       console.log(err);
     });
 
+    $scope.inTextarea;
+
 }]);

@@ -1,3 +1,10 @@
+form {
+  .count {
+    margin-right: 15px;
+    margin-top: 10px;
+  }
+}
+
 .panel{
   transition: all 1s;
 

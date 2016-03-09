@@ -3,13 +3,16 @@ app.directive('hamburgerButton', function(){
       restrict: 'AE',
       scope: {},
       link: function(scope, element, attrs){
-        element.on('click', function(){
-          if (element.hasClass('collapsed')){
-            element.addClass('is-active');
-          } else {
-            element.removeClass('is-active');
+
+        $(document).on('scroll', function(){
+          if (!element.hasClass('collapsed')){
+            element.click();
           }
-        })
+        });
+
+        element.on('click', function(){
+          element.hasClass('collapsed') ? element.addClass('is-active') : element.removeClass('is-active');
+        });
       }
   }
 });
