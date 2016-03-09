@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/libs/angular-ui-notification/dist/angular-ui-notification.min.css" />
+    <link rel="stylesheet" href="/libs/css-hamburgers/dist/hamburgers.min.css" />
 
     <link rel="stylesheet" href="/css/feeds.css" />
     <link rel='stylesheet' href='/css/style.css' />
@@ -24,11 +25,10 @@
     <nav class="navbar navbar-default" ng-controller="NavbarController">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+          <button hamburger-button class="hamburger hamburger--collapse navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" type="button">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
           </button>
           <a class="navbar-brand" href="#">
             <img alt="St.Mark" ng-src="{{  }}">
@@ -51,6 +51,7 @@
     <script src="/js/controllers/user.controller.js"></script>
     <script src="/js/controllers/feeds.controller.js"></script>
     <script src="/js/controllers/navbar.controller.js"></script> <!-- controllers -->
+    <script src="/js/directives/hamburger-button.directive.js"></script> <!-- directives -->
     <script src="/js/services/auth-interceptor.service.js"></script> <!-- interceptor -->
     <script src="/js/services/user-requests.service.js"></script>
     <script src="/js/services/feeds-requests.service.js"></script> <!-- services -->
