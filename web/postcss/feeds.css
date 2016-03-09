@@ -6,7 +6,7 @@ form {
 }
 
 .panel{
-  transition: all 1s;
+  transition: box-shadow 1s;
 
   &:hover:not(:first-child) {
     cursor: pointer;
