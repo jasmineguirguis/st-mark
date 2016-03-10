@@ -4,12 +4,14 @@ app.directive('fixedShareBox', function(){
     scope: {},
     link: function(scope, element, attrs){
 
+      var passed = false;
       $(document).on('scroll', function(){
         var width = this.body.clientWidth;
         var height = this.body.clientHeight;
         var topScroll = this.body.scrollTop;
 
-        if (topScroll > 81){
+        if (topScroll > 81 && !passed){
+          passed = true;
           var height = element[0].clientHeight;
           element.css({
             position: 'fixed',
@@ -20,7 +22,8 @@ app.directive('fixedShareBox', function(){
 
           $('body').css({ marginTop: height + 20 });
 
-        } else {
+        } else if (topScroll < 81){
+          passed = false;
           element.css({ position: 'static', width: '100%' });
           $('body').css({ marginTop: 0 });
         }
